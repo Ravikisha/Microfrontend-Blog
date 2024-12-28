@@ -20,6 +20,9 @@ module.exports = (_, argv) => ({
     port: 3005,
     historyApiFallback: true,
     watchFiles: [path.resolve(__dirname, 'src')],
+    static: {
+      directory: path.join(__dirname, 'public'), // Serve static files from the 'public' directory
+    },
     onListening: function (devServer) {
       const port = devServer.server.address().port
 

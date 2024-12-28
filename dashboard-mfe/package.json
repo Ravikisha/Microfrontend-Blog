@@ -34,6 +34,7 @@
   "dependencies": {
     "@babel/runtime": "^7.13.10",
     "@clerk/clerk-react": "^5.17.1",
+    "axios": "^1.7.9",
     "dashboard-mfe": "file:",
     "firebase": "^11.0.2",
     "react": "^18.2.0",

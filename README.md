@@ -1,3 +1,5 @@
+![Poster](./docs/poster.png)
+
 # Microfrontend Blog
 
 A comprehensive blogging platform built using the **Microfrontend architecture**. This project demonstrates how to build scalable and modular applications by leveraging **React**, **Firebase**, **TailwindCSS**, **Clerk**, and **Module Federation**.

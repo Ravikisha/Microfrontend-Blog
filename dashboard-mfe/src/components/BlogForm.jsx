@@ -3,10 +3,17 @@ import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "../firebase";
 import { useUser } from "@clerk/clerk-react";
 import NoAuth from "./NoAuth";
+import MDEditor, { selectWord } from "@uiw/react-md-editor";
+// No import is required in the WebPack.
+import "@uiw/react-md-editor/markdown-editor.css";
+// No import is required in the WebPack.
+import "@uiw/react-markdown-preview/markdown.css";
+import { useNavigate } from 'react-router-dom';
 
 
 const BlogForm = () => {
   const isAuthenticated = !!useUser().isSignedIn;
+  const navigate = useNavigate();
   if (!isAuthenticated) {
     return <NoAuth />;
   }
@@ -22,17 +29,21 @@ const BlogForm = () => {
     }
 
     try {
+      console.log(user);
       await addDoc(collection(db, "blogs"), {
         title,
         content,
         userId: user.id, // Store user ID
         userEmail: user.primaryEmailAddress?.emailAddress, // Optional: Store email
+        userName: user.fullName,
+        userImageUrl: user.imageUrl,
         timestamp: serverTimestamp(), // Firestore server time
       });
 
       setTitle("");
       setContent("");
       alert("Blog created successfully!");
+      navigate('/dashboard');
     } catch (error) {
       console.error("Error creating blog:", error);
       alert("Failed to create the blog.");
@@ -45,7 +56,7 @@ const BlogForm = () => {
       border: '1px solid #E5E7EB',
       borderRadius: '8px',
       boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-      maxWidth: '600px',
+      width: "100%",
       margin: '2rem auto',
       backgroundColor: '#fff'
     }}>
@@ -98,7 +109,7 @@ const BlogForm = () => {
         }}>
           Content
         </label>
-        <textarea
+        {/* <textarea
           value={content}
           onChange={(e) => setContent(e.target.value)}
           style={{
@@ -114,7 +125,16 @@ const BlogForm = () => {
           placeholder="Write your content here"
           onFocus={(e) => e.target.style.boxShadow = '0 4px 6px rgba(0, 123, 255, 0.25)'}
           onBlur={(e) => e.target.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.1)'}
-        />
+        /> */}
+        <MDEditor
+          style={{
+            padding: '0.75rem',
+            border: '1px solid #E5E7EB',
+            width: '100%',
+            borderRadius: '8px',
+            minHeight: '70vh'
+          }}
+          height={200} value={content} onChange={setContent} />
       </div>
 
       <button

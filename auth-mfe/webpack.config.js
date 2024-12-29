@@ -70,7 +70,6 @@ module.exports = (_, argv) => ({
       filename: "remoteEntry.js",
       remotes: {},
       exposes: {
-        // "./Header": "./src/components/Header.jsx", // Expose Header
         "./Authentication": "./src/components/Authentication.jsx"
       },
       shared: {

@@ -34,8 +34,10 @@
   "dependencies": {
     "@babel/runtime": "^7.13.10",
     "@clerk/clerk-react": "^5.17.1",
+    "@uiw/react-md-editor": "^4.0.5",
     "axios": "^1.7.9",
     "dashboard-mfe": "file:",
+    "dotenv": "^16.4.7",
     "firebase": "^11.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

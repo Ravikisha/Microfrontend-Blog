@@ -2,6 +2,142 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
 body {
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.markdown-container {
+  font-family: 'Playfair Display', serif;
+  padding: 1rem;
+}
+
+
+.markdown-container h1,
+.markdown-container h2,
+.markdown-container h3,
+.markdown-container h4,
+.markdown-container p,
+.markdown-container ul,
+.markdown-container ol {
+  all: unset; /* Resets all styles */
+  margin-top: 0.5rem;
+  box-sizing: border-box;
+}
+
+.markdown-container h1 {
+  display: block;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.markdown-container h2 {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.markdown-container h3 {
+  display: block;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.markdown-container h4 {
+  display: block;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.markdown-container p {
+  display: block;
+  font-size: 1rem;
+}
+
+.markdown-container ul,
+.markdown-container ol {
+  padding-left: 1rem;
+}
+
+.markdown-container ul li,
+.markdown-container ol li {
+  font-size: 1rem;
+  margin-left: 0.5rem;
+}
+
+.markdown-container a {
+  color: #3182ce;
+  text-decoration: underline;
+}
+
+.markdown-container a:hover {
+  color: #2c5282;
+}
+
+.markdown-container img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+}
+
+.markdown-container blockquote {
+  border-left: 4px solid #3182ce;
+  padding: 0.5rem 1rem;
+  margin: 1rem 0;
+}
+
+.markdown-container pre {
+  background-color: #f7fafc;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+}
+
+.markdown-container code {
+  background-color: #f7fafc;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+}
+
+.markdown-container table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.markdown-container th,
+.markdown-container td {
+  border: 1px solid #e2e8f0;
+  padding: 0.5rem;
+}
+
+.markdown-container th {
+  background-color: #f7fafc;
+}
+
+.markdown-container thead th {
+  background-color: #edf2f7;
+}
+
+.markdown-container tbody tr:nth-child(odd) {
+  background-color: #f7fafc;
+}
+
+.markdown-container tbody tr:nth-child(even) {
+  background-color: #edf2f7;
+}
+
+.markdown-container hr {
+  border: 0;
+  border-top: 1px solid #e2e8f0;
+  margin: 1rem 0;
+}
+
+@keyframes bounce {
+  0%, 100% {
+      transform: translateY(0);
+  }
+  50% {
+      transform: translateY(-20px);
+  }
 }

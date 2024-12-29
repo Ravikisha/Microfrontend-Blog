@@ -24,17 +24,17 @@ const BlogList = () => {
 
   return (
     <div style={{ backgroundColor: '#f3f4f6' }}>
-      <div style={{ 
+      <div style={{
         margin: '0 auto',
-         maxWidth: '112rem',
-          paddingLeft: '24px',
-           paddingRight: '32px',
-           display: "flex",
-           flexDirection: "column",
-           alignItems: "center",
-           justifyContent: "center",
-         }}>
-        <div style={{ margin: '0 auto', margin: '2.5rem auto 0', paddingTop: '2.5rem', }}>
+        maxWidth: '112rem',
+        paddingLeft: '24px',
+        paddingRight: '32px',
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+      }}>
+        <div style={{ margin: '0 auto', margin: '0.5rem auto 0', paddingTop: '0.5rem', }}>
           <h2
             style={{
               fontSize: '2.25rem',
@@ -77,6 +77,24 @@ const BlogList = () => {
                 backgroundColor: '#fff',
               }}
             >
+              
+
+              {/* image here */}
+              {
+                [...blog.content.matchAll(/!\[.*?\]\((https?:\/\/[^\)]+)\)/g)].map(match => match[1]).length > 0 &&
+                <img
+                src={[...blog.content.matchAll(/!\[.*?\]\((https?:\/\/[^\)]+)\)/g)].map(match => match[1])[0]}
+                alt="Banner"
+                style={{
+                  marginTop: '0.5rem',
+                  width: '100%',
+                  height: '12rem',
+                  objectFit: 'cover',
+                  borderRadius: '8px',
+                }}
+              />
+              }
+              
               <div
                 style={{
                   display: 'flex',
@@ -84,25 +102,11 @@ const BlogList = () => {
                   gap: '1rem',
                   fontSize: '0.75rem',
                   color: '#6B7280',
+                  marginTop: '0.5rem',
                 }}
               >
                 <time>{new Date(blog.timestamp?.toDate()).toDateString()}</time>
-                <a
-                  href="#"
-                  style={{
-                    borderRadius: '9999px',
-                    backgroundColor: '#F3F4F6',
-                    padding: '0.375rem 0.75rem',
-                    fontSize: '0.875rem',
-                    fontWeight: '500',
-                    color: '#6B7280',
-                    textDecoration: 'none',
-                  }}
-                >
-                  Marketing
-                </a>
               </div>
-
               <div style={{ position: 'relative' }}>
                 <h3
                   style={{
@@ -113,7 +117,7 @@ const BlogList = () => {
                     color: '#111827',
                   }}
                 >
-                  <a
+                  <span
                     href="#"
                     style={{
                       position: 'relative',
@@ -123,7 +127,7 @@ const BlogList = () => {
                     }}
                   >
                     {blog.title ? blog.title : 'Untitled'}
-                  </a>
+                  </span>
                 </h3>
                 <p
                   style={{
@@ -137,7 +141,11 @@ const BlogList = () => {
                     color: '#6B7280',
                   }}
                 >
-                  {blog.content ? blog.content.length > 100 ? blog.content.substring(0, 100) + '...' : blog.content : 'No content'}
+                  {blog.content ?
+                    blog.content.length > 100 ?
+                      blog.content.match(/(?<![\[\*\#\-`])(?:^|\s)([^\!\[\]\(\)\#\*\-\`\n]+)/g).join(' ').slice(0, 100) + '...'
+                      : blog.content.match(/(?<![\[\*\#\-`])(?:^|\s)([^\!\[\]\(\)\#\*\-\`\n]+)/g).join(' ')
+                    : 'No content'}
                 </p>
               </div>
 
@@ -150,7 +158,7 @@ const BlogList = () => {
                 }}
               >
                 <img
-                  src="https://picsum.photos/200/300"
+                  src={blog.userImageUrl}
                   alt=""
                   style={{
                     width: '2.5rem',
@@ -174,7 +182,7 @@ const BlogList = () => {
                         textDecoration: 'none',
                       }}
                     >
-                      {blog.userEmail || 'Anonymous'}
+                      {blog.userName || 'Anonymous'}
                     </a>
                   </p>
                   <p style={{ color: '#6B7280' }}>Author</p>
